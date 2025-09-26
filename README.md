@@ -227,3 +227,19 @@ public class CheckoutDemo {
 
 ```
 
+#### C++ Payment code - review 
+
+1. Rigid Enum
+     Adding a new payment mode requires editing both this enum and the switch in checkout. This violates the Open-Closed Principle (OCP) because the code is not open for extension but requires modification.
+
+2. Switch on enum
+     switch with enums for behavior is called "switch envy". It spreads logic across many places and grows unmaintainable as cases increase.
+   
+3. SRP violatiion
+      Checkout knows how each payment works. Business logic is hardcoded here.
+
+4. Hardcoded strings
+      Strings like "Processing PayPal..." are repeated per case. If format changes, multiple lines must be updated.
+
+5. Magic Number
+      150.75 is a raw literal → not self-explanatory.
